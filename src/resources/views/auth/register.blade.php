@@ -15,19 +15,15 @@
     <h1>Register</h1>
 
     <form id="register-form">
-        <input type="text" name="user_id" placeholder="user id">
+        <input type="text" name="user_id" placeholder="user id" required>
 
-        <input type="text" name="user_name" placeholder="user name">
+        <input type="text" name="user_name" placeholder="user name" required>
 
-        <input type="password" name="password" placeholder="password">
+        <input type="password" name="password" placeholder="password" required autocomplete="new-password">
 
-        <input type="password"
-               name="password_confirmation"
-               placeholder="confirm">
+        <input type="password" name="password_confirmation" placeholder="confirm" required>
 
-        <button type="submit">
-            register
-        </button>
+        <button type="submit">register</button>
     </form>
 </div>
 
