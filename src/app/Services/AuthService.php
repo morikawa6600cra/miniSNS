@@ -3,15 +3,14 @@
 namespace App\Services;
 
 use App\Models\User;
-use App\Models\Profile;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
     /**
-     * @param array $data
-     * @return User
+     * ユーザー登録処理
      */
     public function register(array $data): User
     {
@@ -22,12 +21,11 @@ class AuthService
                 'password' => Hash::make($data['password']),
             ]);
 
-            Profile::create([
-                'user_id' => $user->id,
+            $user->profile()->create([
                 'user_name' => $data['user_name'],
             ]);
 
-            auth()->login($user);
+            Auth::login($user);
 
             return $user->load('profile');
         });
