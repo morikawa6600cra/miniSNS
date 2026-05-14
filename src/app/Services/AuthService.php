@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class AuthService
 {
@@ -29,5 +30,20 @@ class AuthService
 
             return $user->load('profile');
         });
+    }
+
+    public function login(array $data): User
+    {
+        $user = User::where('user_id', $data['user_id'])->first();
+
+        if (!$user || !Hash::check($data['password'], $user->password)) {
+            throw ValidationException::withMessages([
+                'user_id' => ['ログイン情報が正しくありません'],
+            ]);
+        }
+
+        Auth::login($user);
+
+        return $user->load('profile');
     }
 }
