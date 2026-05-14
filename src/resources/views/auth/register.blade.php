@@ -6,12 +6,13 @@
 
     @vite([
         'resources/css/auth/register.css',
-        'resources/js/auth/register.js'
+        'resources/js/auth/register.js',
+        'resources/css/auth.css'
     ])
 </head>
 <body>
 
-<div class="register-container">
+<div class="auth-container">
     <h1>Register</h1>
 
     <form id="register-form">
@@ -25,6 +26,12 @@
 
         <button type="submit">register</button>
     </form>
+
+    <div class="auth-switch">
+        <a href="{{ route('login') }}">
+            すでにアカウントをお持ちの方はこちら
+        </a>
+    </div>
 </div>
 
 </body>
